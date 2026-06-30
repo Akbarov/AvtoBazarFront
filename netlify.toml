@@ -1,0 +1,19 @@
+# Netlify config for the AvtoBazar admin panel (Vite SPA at the repo root).
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"               # pin a Node LTS for reproducible builds
+
+# SPA fallback: serve index.html for client-side routes (React Router).
+# Without this, deep links like /vehicles/123 or a page refresh return 404.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# VITE_API_BASE is the backend's HTTPS origin and is read at BUILD TIME
+# (Vite inlines it into the bundle). Set it in the Netlify UI:
+#   Site configuration -> Environment variables -> VITE_API_BASE = https://api.your-domain.uz
+# A change requires a redeploy.

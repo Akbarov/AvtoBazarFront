@@ -31,7 +31,7 @@ interface Props<T> {
 }
 
 const TH =
-  'px-[14px] py-[11px] text-[10.5px] font-semibold uppercase tracking-[0.04em] text-muted border-b border-border whitespace-nowrap'
+  'px-[14px] py-[11px] text-left text-[10.5px] font-semibold uppercase tracking-[0.04em] text-muted border-b border-border whitespace-nowrap'
 
 export function ServerDataGrid<T>({
   columns,

@@ -10,7 +10,6 @@ import { initials } from '@/lib/utils'
 import { mediaApi } from '@/lib/api/resources/media'
 import { Modal } from '@/components/common/Modal'
 import { TrilingualNameField } from '@/components/common/TrilingualNameField'
-import { Input } from '@/components/ui/input'
 import { Switch } from '@/components/ui/switch'
 import { Button } from '@/components/ui/button'
 import { useToast } from '@/components/common/toast'
@@ -21,11 +20,10 @@ interface FormValues {
   nameRu: string
   nameEn: string
   logoUrl: string
-  position: string
   popular: boolean
 }
 
-const EMPTY: FormValues = { nameUz: '', nameRu: '', nameEn: '', logoUrl: '', position: '', popular: false }
+const EMPTY: FormValues = { nameUz: '', nameRu: '', nameEn: '', logoUrl: '', popular: false }
 
 interface Props {
   open: boolean
@@ -47,13 +45,12 @@ export function BrandForm({ open, brand, onClose }: Props) {
         nameRu: z.string(),
         nameEn: z.string(),
         logoUrl: z.string(),
-        position: z.string(),
         popular: z.boolean(),
       }),
     [t],
   )
 
-  const { handleSubmit, watch, setValue, setError, reset, register, formState } = useForm<FormValues>({
+  const { handleSubmit, watch, setValue, setError, reset, formState } = useForm<FormValues>({
     resolver: zodResolver(schema),
     defaultValues: EMPTY,
   })
@@ -68,7 +65,6 @@ export function BrandForm({ open, brand, onClose }: Props) {
             nameRu: brand.nameRu ?? '',
             nameEn: brand.nameEn ?? '',
             logoUrl: brand.logoUrl ?? '',
-            position: brand.position ?? '',
             popular: brand.popular,
           }
         : EMPTY,
@@ -98,7 +94,6 @@ export function BrandForm({ open, brand, onClose }: Props) {
       nameRu: form.nameRu || undefined,
       nameEn: form.nameEn || undefined,
       logoUrl: form.logoUrl || undefined,
-      position: form.position || undefined,
       popular: form.popular,
     }
     try {
@@ -181,11 +176,6 @@ export function BrandForm({ open, brand, onClose }: Props) {
               </Button>
             )}
           </div>
-        </div>
-
-        <div>
-          <div className="mb-2 text-[12px] font-semibold text-fg-2">{t('brands.position')}</div>
-          <Input {...register('position')} placeholder={t('brands.positionPlaceholder')} className="w-[140px] font-mono" />
         </div>
 
         <label className="flex cursor-pointer items-center justify-between">

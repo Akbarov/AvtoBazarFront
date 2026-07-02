@@ -93,7 +93,6 @@ export interface VehicleBrandResponse {
   nameRu: string
   nameEn: string
   logoUrl: string
-  position: string
   popular: boolean
 }
 
@@ -102,7 +101,6 @@ export interface VehicleBrandRequest {
   nameRu?: string
   nameEn?: string
   logoUrl?: string
-  position?: string
   popular?: boolean
 }
 

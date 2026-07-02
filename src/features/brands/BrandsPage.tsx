@@ -25,7 +25,7 @@ export function BrandsPage() {
   const grid = useServerGrid<VehicleBrandResponse>({
     queryKey: 'brands',
     fetcher: brandsApi.pageable,
-    defaultSort: { key: 'position', direction: 'ASC' },
+    defaultSort: { key: 'created_at', direction: 'DESC' },
   })
 
   const [searchText, setSearchText] = useState('')
@@ -79,12 +79,6 @@ export function BrandsPage() {
       ),
     },
     { id: 'name', header: t('brands.colName'), cell: (b) => <span className="font-medium">{b.name}</span> },
-    {
-      id: 'position',
-      header: t('brands.colPosition'),
-      sortKey: 'position',
-      cell: (b) => <span className="font-mono text-fg-2">{b.position || '—'}</span>,
-    },
     {
       id: 'popular',
       header: t('brands.colPopular'),

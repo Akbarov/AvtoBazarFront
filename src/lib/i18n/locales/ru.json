@@ -36,8 +36,6 @@
     "comingSoon": "Этот экран скоро появится.",
     "signedInAsAdmin": "Вы вошли как ADMIN",
     "signOut": "Выйти",
-    "apiConnected": "API подключён",
-    "adminScope": "control · ADMIN scope",
     "required": "Обязательно",
     "optional": "Необязательно"
   },

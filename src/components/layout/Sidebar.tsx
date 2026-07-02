@@ -61,14 +61,6 @@ export function Sidebar() {
           </NavLink>
         ))}
       </nav>
-
-      <div className="border-t border-sidebar-border px-[18px] py-[14px] text-[11px] leading-relaxed text-sidebar-fg">
-        <div className="flex items-center gap-[7px]">
-          <span className="h-[7px] w-[7px] rounded-full bg-green" />
-          {t('common.apiConnected')} · :8090
-        </div>
-        <div className="mt-[3px] opacity-70">{t('common.adminScope')}</div>
-      </div>
     </aside>
   )
 }

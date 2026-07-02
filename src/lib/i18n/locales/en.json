@@ -36,8 +36,6 @@
     "comingSoon": "This screen is coming soon.",
     "signedInAsAdmin": "Signed in as ADMIN",
     "signOut": "Sign out",
-    "apiConnected": "API connected",
-    "adminScope": "control · ADMIN scope",
     "required": "Required",
     "optional": "Optional"
   },

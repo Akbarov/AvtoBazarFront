@@ -21,9 +21,9 @@ export function Modal({ open, title, onClose, children, footer }: ModalProps) {
         role="dialog"
         aria-modal="true"
         aria-label={title}
-        className="relative z-[71] flex max-h-[85vh] w-[480px] max-w-full flex-col overflow-hidden rounded-[16px] border border-border bg-surface shadow animate-ab-pop"
+        className="relative z-[71] flex max-h-[90vh] w-[clamp(640px,55vw,1100px)] max-w-[94vw] flex-col overflow-hidden rounded-[16px] border border-border bg-surface shadow animate-ab-pop"
       >
-        <div className="flex items-center justify-between border-b border-border px-5 py-4">
+        <div className="flex items-center justify-between border-b border-border px-6 py-4">
           <div className="text-[15px] font-semibold">{title}</div>
           <button
             onClick={onClose}
@@ -32,9 +32,9 @@ export function Modal({ open, title, onClose, children, footer }: ModalProps) {
             <X size={18} />
           </button>
         </div>
-        <div className="flex-1 overflow-y-auto px-5 py-5">{children}</div>
+        <div className="flex-1 overflow-y-auto px-6 py-6">{children}</div>
         {footer && (
-          <div className="flex items-center justify-end gap-2 border-t border-border px-5 py-4">{footer}</div>
+          <div className="flex items-center justify-end gap-2 border-t border-border px-6 py-4">{footer}</div>
         )}
       </div>
     </div>

@@ -5,7 +5,7 @@ import { z } from 'zod'
 import { useTranslation } from 'react-i18next'
 import type { VehicleModelRequest, VehicleModelResponse } from '@/types/api'
 import { parseApiError } from '@/lib/api/errors'
-import { Drawer } from '@/components/common/Drawer'
+import { Modal } from '@/components/common/Modal'
 import { TrilingualNameField } from '@/components/common/TrilingualNameField'
 import { Input } from '@/components/ui/input'
 import { Select } from '@/components/ui/select'
@@ -109,7 +109,7 @@ export function ModelForm({ open, model, onClose }: Props) {
   const busy = create.isPending || update.isPending
 
   return (
-    <Drawer
+    <Modal
       open={open}
       title={model ? t('models.edit') : t('models.new')}
       onClose={onClose}
@@ -175,6 +175,6 @@ export function ModelForm({ open, model, onClose }: Props) {
           <Switch checked={values.popular} onChange={(c) => setValue('popular', c)} />
         </label>
       </div>
-    </Drawer>
+    </Modal>
   )
 }

@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 import { X } from 'lucide-react'
 import { useFocusTrap } from '@/lib/a11y/useFocusTrap'
 
-interface DrawerProps {
+interface ModalProps {
   open: boolean
   title: string
   onClose: () => void
@@ -10,18 +10,18 @@ interface DrawerProps {
   footer?: ReactNode
 }
 
-export function Drawer({ open, title, onClose, children, footer }: DrawerProps) {
+export function Modal({ open, title, onClose, children, footer }: ModalProps) {
   const panelRef = useFocusTrap<HTMLDivElement>(open, onClose)
   if (!open) return null
   return (
-    <div className="fixed inset-0 z-[70]">
-      <div className="absolute inset-0 bg-black/40 animate-ab-fadein" onClick={onClose} />
+    <div className="fixed inset-0 z-[70] flex items-center justify-center p-4">
+      <div className="absolute inset-0 bg-black/40 backdrop-blur-sm animate-ab-fadein" onClick={onClose} />
       <div
         ref={panelRef}
         role="dialog"
         aria-modal="true"
         aria-label={title}
-        className="absolute right-0 top-0 z-[71] flex h-full w-[440px] max-w-[92vw] flex-col bg-surface shadow animate-ab-drawerin"
+        className="relative z-[71] flex max-h-[85vh] w-[480px] max-w-full flex-col overflow-hidden rounded-[16px] border border-border bg-surface shadow animate-ab-pop"
       >
         <div className="flex items-center justify-between border-b border-border px-5 py-4">
           <div className="text-[15px] font-semibold">{title}</div>

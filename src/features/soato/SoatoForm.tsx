@@ -5,7 +5,7 @@ import { z } from 'zod'
 import { useTranslation } from 'react-i18next'
 import type { SoatoRequest, SoatoResponse } from '@/types/api'
 import { parseApiError } from '@/lib/api/errors'
-import { Drawer } from '@/components/common/Drawer'
+import { Modal } from '@/components/common/Modal'
 import { TrilingualNameField } from '@/components/common/TrilingualNameField'
 import { Input } from '@/components/ui/input'
 import { Select } from '@/components/ui/select'
@@ -116,7 +116,7 @@ export function SoatoForm({ open, entry, onClose }: Props) {
   ]
 
   return (
-    <Drawer
+    <Modal
       open={open}
       title={entry ? t('soato.edit') : t('soato.new')}
       onClose={onClose}
@@ -187,6 +187,6 @@ export function SoatoForm({ open, entry, onClose }: Props) {
           </div>
         </div>
       </div>
-    </Drawer>
+    </Modal>
   )
 }

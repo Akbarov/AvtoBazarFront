@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next'
 import {
   Car,
   CarFront,
-  Image as ImageIcon,
   LayoutDashboard,
   MapPin,
   Tag,
@@ -25,7 +24,6 @@ const NAV: NavItem[] = [
   { to: '/brands', icon: Tag, key: 'nav.brands' },
   { to: '/models', icon: CarFront, key: 'nav.models' },
   { to: '/soato', icon: MapPin, key: 'nav.soato' },
-  { to: '/media', icon: ImageIcon, key: 'nav.media' },
 ]
 
 export function Sidebar() {

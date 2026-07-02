@@ -5,8 +5,7 @@
     "users": "Foydalanuvchilar",
     "brands": "Brendlar",
     "models": "Modellar",
-    "soato": "Hududlar",
-    "media": "Media"
+    "soato": "Hududlar"
   },
   "login": {
     "title": "Kirish",
@@ -235,28 +234,7 @@
     "deleteMediaMsg": "Fayl butunlay o'chiriladi."
   },
   "media": {
-    "title": "Media",
-    "subtitle": "E'lon media fayllarini ko'rish va tozalash",
-    "searchPlaceholder": "Fayl nomi bo'yicha qidirish…",
-    "allTypes": "Barcha turlar",
-    "image": "Rasm",
-    "video": "Video",
-    "allPrimary": "Asosiy: hammasi",
-    "primary": "Asosiy",
-    "notPrimary": "Asosiy emas",
-    "colPreview": "Ko'rinish",
-    "colName": "Fayl nomi",
-    "colType": "Turi",
-    "colSize": "Hajmi",
-    "colListing": "E'lon",
-    "colPrimary": "Asosiy",
-    "colCreated": "Yaratilgan",
-    "colActions": "Amallar",
-    "openListing": "E'lonni ochish",
-    "emptyTitle": "Media fayllar yo'q",
-    "emptyMsg": "Filtrlarni o'zgartiring.",
-    "deleteTitle": "Fayl o'chirilsinmi?",
-    "deleteMsg": "\"{{name}}\" butunlay o'chiriladi."
+    "primary": "Asosiy"
   },
   "dashboard": {
     "title": "Boshqaruv paneli",

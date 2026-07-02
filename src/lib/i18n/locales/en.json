@@ -5,8 +5,7 @@
     "users": "Users",
     "brands": "Brands",
     "models": "Models",
-    "soato": "Regions",
-    "media": "Media"
+    "soato": "Regions"
   },
   "login": {
     "title": "Sign in",
@@ -235,28 +234,7 @@
     "deleteMediaMsg": "This file will be permanently deleted."
   },
   "media": {
-    "title": "Media",
-    "subtitle": "Review and clean up listing media",
-    "searchPlaceholder": "Search file name…",
-    "allTypes": "All types",
-    "image": "Image",
-    "video": "Video",
-    "allPrimary": "Primary: all",
-    "primary": "Primary",
-    "notPrimary": "Not primary",
-    "colPreview": "Preview",
-    "colName": "File name",
-    "colType": "Type",
-    "colSize": "Size",
-    "colListing": "Listing",
-    "colPrimary": "Primary",
-    "colCreated": "Created",
-    "colActions": "Actions",
-    "openListing": "Open listing",
-    "emptyTitle": "No media files",
-    "emptyMsg": "Try adjusting the filters.",
-    "deleteTitle": "Delete file?",
-    "deleteMsg": "\"{{name}}\" will be permanently deleted."
+    "primary": "Primary"
   },
   "dashboard": {
     "title": "Dashboard",

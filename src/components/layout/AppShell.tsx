@@ -11,7 +11,6 @@ const SECTION_TITLE: Record<string, string> = {
   brands: 'nav.brands',
   models: 'nav.models',
   soato: 'nav.soato',
-  media: 'nav.media',
 }
 
 export function AppShell() {

@@ -5,8 +5,7 @@
     "users": "Пользователи",
     "brands": "Бренды",
     "models": "Модели",
-    "soato": "Регионы",
-    "media": "Медиа"
+    "soato": "Регионы"
   },
   "login": {
     "title": "Вход",
@@ -235,28 +234,7 @@
     "deleteMediaMsg": "Файл будет удалён безвозвратно."
   },
   "media": {
-    "title": "Медиа",
-    "subtitle": "Просмотр и чистка медиафайлов объявлений",
-    "searchPlaceholder": "Поиск по имени файла…",
-    "allTypes": "Все типы",
-    "image": "Изображение",
-    "video": "Видео",
-    "allPrimary": "Главное: все",
-    "primary": "Главное",
-    "notPrimary": "Не главное",
-    "colPreview": "Превью",
-    "colName": "Имя файла",
-    "colType": "Тип",
-    "colSize": "Размер",
-    "colListing": "Объявление",
-    "colPrimary": "Главное",
-    "colCreated": "Создано",
-    "colActions": "Действия",
-    "openListing": "Открыть объявление",
-    "emptyTitle": "Медиафайлов нет",
-    "emptyMsg": "Измените фильтры.",
-    "deleteTitle": "Удалить файл?",
-    "deleteMsg": "«{{name}}» будет удалён безвозвратно."
+    "primary": "Главное"
   },
   "dashboard": {
     "title": "Дашборд",

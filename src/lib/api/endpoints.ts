@@ -31,6 +31,7 @@ export const endpoints = {
   public: {
     vehicle: (id: string) => `${API}/vehicles/${id}`,
     vehicleMedia: (vehicleId: string) => `${API}/vehicles/media/vehicle/${vehicleId}`,
+    vehicleMediaUpload: `${API}/vehicles/media`,
     soatoById: (id: string) => `${API}/soato/${id}`,
     enums: (name: string) => `${API}/vehicles/enums/${name}`,
   },

@@ -11,4 +11,11 @@ export const mediaApi = {
   remove: async (fileId: string): Promise<void> => {
     await api.delete(endpoints.control.mediaDelete(fileId))
   },
+  // multipart upload to S3; returns the stored file (fileUrl is what we persist on the entity).
+  upload: async (file: File): Promise<VehicleFilesResponse> => {
+    const form = new FormData()
+    form.append('files', file)
+    const { data } = await api.post<VehicleFilesResponse[]>(endpoints.public.vehicleMediaUpload, form)
+    return data[0]
+  },
 }

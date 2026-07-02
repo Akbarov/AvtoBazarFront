@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { BadgeCheck, Check, ChevronLeft, Film, Image as ImageIcon, Trash2, X } from 'lucide-react'
+import { BadgeCheck, BadgeX, Check, ChevronLeft, Film, Image as ImageIcon, Trash2, X } from 'lucide-react'
 import { vehiclesApi } from '@/lib/api/resources/vehicles'
 import { mediaApi } from '@/lib/api/resources/media'
 import { soatoApi } from '@/lib/api/resources/soato'
@@ -10,6 +10,7 @@ import { parseApiError } from '@/lib/api/errors'
 import { formatEpoch, formatNumber, formatPrice, initials } from '@/lib/utils'
 import { toColorMap, toLabelMap, useColors, useEnum } from '@/lib/enums/enumCache'
 import { StatusPill } from '@/components/common/StatusPill'
+import { VerificationPill } from '@/components/common/VerificationPill'
 import { ColorSwatch } from '@/components/common/ColorSwatch'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -73,6 +74,14 @@ export function VehicleDetailPage() {
     },
   })
 
+  const verify = useMutation({
+    mutationFn: (approve: boolean) => (approve ? vehiclesApi.verify(id) : vehiclesApi.unverify(id)),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['vehicle', id] })
+      qc.invalidateQueries({ queryKey: ['vehicles'] })
+    },
+  })
+
   const deleteMedia = useMutation({
     mutationFn: (fileId: string) => mediaApi.remove(fileId),
     onSuccess: () => qc.invalidateQueries({ queryKey: ['vehicle-media', id] }),
@@ -92,6 +101,23 @@ export function VehicleDetailPage() {
     }
     try {
       await toggle.mutateAsync(!vehicle!.active)
+      toast.success(t('toast.updated'))
+    } catch (e) {
+      toast.danger(parseApiError(e, t('toast.genericError')).message)
+    }
+  }
+
+  async function onVerify() {
+    if (vehicle!.verified) {
+      const ok = await confirm({
+        title: t('vehicles.unverifyTitle'),
+        message: t('vehicles.unverifyMsg'),
+        confirmLabel: t('vehicles.unverify'),
+      })
+      if (!ok) return
+    }
+    try {
+      await verify.mutateAsync(!vehicle!.verified)
       toast.success(t('toast.updated'))
     } catch (e) {
       toast.danger(parseApiError(e, t('toast.genericError')).message)
@@ -133,6 +159,7 @@ export function VehicleDetailPage() {
               {vehicle.brandName} {vehicle.modelName}
             </div>
             <StatusPill active={vehicle.active} />
+            <VerificationPill verified={vehicle.verified} />
           </div>
           <div className="mt-1 text-fg-2">
             {vehicle.year} · {maps.category[vehicle.category] ?? vehicle.category}
@@ -147,6 +174,10 @@ export function VehicleDetailPage() {
               <div className="text-right text-[11.5px] font-semibold text-accent">{t('vehicles.negotiable')}</div>
             )}
           </div>
+          <Button variant={vehicle.verified ? 'outline' : 'primary'} onClick={onVerify} disabled={verify.isPending}>
+            {vehicle.verified ? <BadgeX size={16} /> : <BadgeCheck size={16} />}
+            {vehicle.verified ? t('vehicles.unverify') : t('vehicles.verify')}
+          </Button>
           <Button variant={vehicle.active ? 'danger' : 'primary'} onClick={onToggle} disabled={toggle.isPending}>
             {vehicle.active ? <X size={16} /> : <Check size={16} />}
             {vehicle.active ? t('vehicles.deactivate') : t('vehicles.activate')}
@@ -252,6 +283,10 @@ export function VehicleDetailPage() {
               <div className="flex justify-between">
                 <span className="text-fg-2">{t('vehicles.status')}</span>
                 <StatusPill active={vehicle.active} />
+              </div>
+              <div className="flex justify-between">
+                <span className="text-fg-2">{t('vehicles.verification')}</span>
+                <VerificationPill verified={vehicle.verified} />
               </div>
             </div>
           </div>

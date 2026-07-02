@@ -15,6 +15,8 @@ export const endpoints = {
     vehiclesPageable: `${CONTROL}/vehicles/pageable`,
     vehicleActivate: (id: string) => `${CONTROL}/vehicles/${id}/activate`,
     vehicleDeactivate: (id: string) => `${CONTROL}/vehicles/${id}/deactivate`,
+    vehicleVerify: (id: string) => `${CONTROL}/vehicles/${id}/verify`,
+    vehicleUnverify: (id: string) => `${CONTROL}/vehicles/${id}/unverify`,
     mediaPageable: `${CONTROL}/vehicles/media/pageable`,
     mediaDelete: (fileId: string) => `${CONTROL}/vehicles/media/${fileId}`,
     brands: `${CONTROL}/brands`,

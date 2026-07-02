@@ -24,4 +24,12 @@ export const vehiclesApi = {
     const { data } = await api.post<VehicleResponse>(endpoints.control.vehicleDeactivate(id))
     return data
   },
+  verify: async (id: string): Promise<VehicleResponse> => {
+    const { data } = await api.post<VehicleResponse>(endpoints.control.vehicleVerify(id))
+    return data
+  },
+  unverify: async (id: string): Promise<VehicleResponse> => {
+    const { data } = await api.post<VehicleResponse>(endpoints.control.vehicleUnverify(id))
+    return data
+  },
 }

@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { Car, Check, Eye, Search, X } from 'lucide-react'
+import { BadgeCheck, BadgeX, Car, Check, Eye, Search, X } from 'lucide-react'
 import { vehiclesApi } from '@/lib/api/resources/vehicles'
 import { criteria, type SearchCriteria } from '@/lib/api/pageable'
 import type { VehicleResponse } from '@/types/api'
@@ -12,6 +12,7 @@ import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
 import { Select } from '@/components/ui/select'
 import { StatusPill } from '@/components/common/StatusPill'
+import { VerificationPill } from '@/components/common/VerificationPill'
 import { ColorSwatch } from '@/components/common/ColorSwatch'
 import { useConfirm } from '@/components/common/confirm'
 import { useToast } from '@/components/common/toast'
@@ -42,6 +43,7 @@ export function VehiclesListPage() {
 
   const [searchText, setSearchText] = useState('')
   const [status, setStatus] = useState('')
+  const [verification, setVerification] = useState('')
   const [category, setCategory] = useState('')
   const [brand, setBrand] = useState('')
   const [currency, setCurrency] = useState('')
@@ -51,6 +53,7 @@ export function VehiclesListPage() {
       const search: SearchCriteria[] = []
       if (searchText.trim()) search.push(criteria('description', '=', searchText.trim()))
       if (status) search.push(criteria('active', '=', status === 'true'))
+      if (verification) search.push(criteria('verified', '=', verification === 'true'))
       if (category) search.push(criteria('category', '=', category))
       if (brand) search.push(criteria('brandId', '=', brand))
       if (currency) search.push(criteria('currency', '=', currency))
@@ -58,11 +61,17 @@ export function VehiclesListPage() {
     }, 350)
     return () => window.clearTimeout(id)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchText, status, category, brand, currency])
+  }, [searchText, status, verification, category, brand, currency])
 
   const toggle = useMutation({
     mutationFn: ({ id, activate }: { id: string; activate: boolean }) =>
       activate ? vehiclesApi.activate(id) : vehiclesApi.deactivate(id),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ['vehicles'] }),
+  })
+
+  const verify = useMutation({
+    mutationFn: ({ id, approve }: { id: string; approve: boolean }) =>
+      approve ? vehiclesApi.verify(id) : vehiclesApi.unverify(id),
     onSuccess: () => qc.invalidateQueries({ queryKey: ['vehicles'] }),
   })
 
@@ -83,7 +92,24 @@ export function VehiclesListPage() {
     }
   }
 
-  const hasFilters = !!(searchText.trim() || status || category || brand || currency)
+  async function onVerify(v: VehicleResponse) {
+    if (v.verified) {
+      const ok = await confirm({
+        title: t('vehicles.unverifyTitle'),
+        message: t('vehicles.unverifyMsg'),
+        confirmLabel: t('vehicles.unverify'),
+      })
+      if (!ok) return
+    }
+    try {
+      await verify.mutateAsync({ id: v.id, approve: !v.verified })
+      toast.success(t('toast.updated'))
+    } catch (e) {
+      toast.danger(parseApiError(e, t('toast.genericError')).message)
+    }
+  }
+
+  const hasFilters = !!(searchText.trim() || status || verification || category || brand || currency)
 
   const columns: ColumnSpec<VehicleResponse>[] = [
     {
@@ -157,6 +183,7 @@ export function VehiclesListPage() {
       ),
     },
     { id: 'status', header: t('vehicles.colStatus'), cell: (v) => <StatusPill active={v.active} /> },
+    { id: 'verification', header: t('vehicles.colVerification'), cell: (v) => <VerificationPill verified={v.verified} /> },
     {
       id: 'views',
       header: t('vehicles.colViews'),
@@ -176,6 +203,17 @@ export function VehiclesListPage() {
             className="flex h-[30px] w-[30px] items-center justify-center rounded-lg border border-border bg-surface-2 text-fg-2 hover:text-fg"
           >
             <Eye size={15} />
+          </button>
+          <button
+            onClick={() => onVerify(v)}
+            title={v.verified ? t('vehicles.unverify') : t('vehicles.verify')}
+            className={
+              v.verified
+                ? 'flex h-[30px] w-[30px] items-center justify-center rounded-lg border border-border bg-surface-2 text-fg-2 hover:text-fg'
+                : 'flex h-[30px] w-[30px] items-center justify-center rounded-lg border border-border bg-accent-soft text-accent'
+            }
+          >
+            {v.verified ? <BadgeX size={15} /> : <BadgeCheck size={15} />}
           </button>
           <button
             onClick={() => onToggle(v)}
@@ -220,6 +258,15 @@ export function VehiclesListPage() {
           onChange={(e) => setStatus(e.target.value)}
         />
         <Select
+          options={[
+            { value: 'true', label: t('vehicles.verified') },
+            { value: 'false', label: t('vehicles.pending') },
+          ]}
+          placeholder={t('vehicles.allVerification')}
+          value={verification}
+          onChange={(e) => setVerification(e.target.value)}
+        />
+        <Select
           options={toOptions(categories.data)}
           placeholder={t('vehicles.allCategories')}
           value={category}
@@ -251,7 +298,7 @@ export function VehiclesListPage() {
         onPage={grid.setPage}
         onPerPage={grid.setPerPage}
         rowKey={(v) => v.id}
-        minWidth={1040}
+        minWidth={1180}
         emptyTitle={hasFilters ? t('grid.noResultsTitle') : t('vehicles.emptyTitle')}
         emptyMessage={hasFilters ? t('grid.noResultsMsg') : t('vehicles.emptyMsg')}
       />

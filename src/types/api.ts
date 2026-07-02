@@ -78,6 +78,7 @@ export interface VehicleResponse {
   features: string[]
   negotiable: boolean
   active: boolean
+  verified: boolean
   favorite: boolean
   viewCount: number
   imageUrls: string[]

@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { BadgeCheck, BadgeX, Check, ChevronLeft, Film, Image as ImageIcon, Trash2, X } from 'lucide-react'
 import { vehiclesApi } from '@/lib/api/resources/vehicles'
+import { VehicleGallery } from './VehicleGallery'
 import { mediaApi } from '@/lib/api/resources/media'
 import { soatoApi } from '@/lib/api/resources/soato'
 import { parseApiError } from '@/lib/api/errors'
@@ -141,7 +142,7 @@ export function VehicleDetailPage() {
     }
   }
 
-  const mediaFiles = mediaQ.data ?? []
+  const mediaFiles = [...(mediaQ.data ?? [])].sort((a, b) => a.orderNumber - b.orderNumber)
 
   return (
     <div>
@@ -188,22 +189,7 @@ export function VehicleDetailPage() {
       <div className="grid grid-cols-1 items-start gap-4 lg:grid-cols-[1.7fr_1fr]">
         {/* LEFT */}
         <div className="flex flex-col gap-4">
-          <div className="overflow-hidden rounded-[14px] border border-border bg-surface shadow-sm">
-            <div className="flex aspect-video items-center justify-center border-b border-border bg-surface-2 text-muted">
-              {vehicle.imageUrls?.[0] ? (
-                <img src={vehicle.imageUrls[0]} alt="" className="h-full w-full object-cover" />
-              ) : (
-                <ImageIcon size={38} strokeWidth={1.4} />
-              )}
-            </div>
-            {vehicle.imageUrls && vehicle.imageUrls.length > 1 && (
-              <div className="flex gap-2 overflow-x-auto p-3">
-                {vehicle.imageUrls.slice(1).map((url, i) => (
-                  <img key={i} src={url} alt="" className="h-16 w-[88px] flex-shrink-0 rounded-lg border border-border object-cover" />
-                ))}
-              </div>
-            )}
-          </div>
+          <VehicleGallery images={vehicle.imageUrls ?? []} />
 
           <div className="rounded-[14px] border border-border bg-surface p-[18px] shadow-sm">
             <div className="mb-3.5 text-[14px] font-semibold">{t('vehicles.specifications')}</div>
@@ -304,16 +290,26 @@ export function VehicleDetailPage() {
               <div className="flex flex-col gap-2">
                 {mediaFiles.map((f) => (
                   <div key={f.id} className="flex items-center gap-3 rounded-[10px] border border-border p-2">
-                    <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-surface-2 text-muted">
-                      {f.fileType === 'VIDEO' ? <Film size={16} /> : <ImageIcon size={16} />}
+                    <div className="relative flex h-11 w-11 flex-shrink-0 items-center justify-center overflow-hidden rounded-lg bg-surface-2 text-muted">
+                      {f.fileType === 'IMAGE' && f.fileUrl ? (
+                        <img src={f.fileUrl} alt="" className="h-full w-full object-cover" />
+                      ) : f.fileType === 'VIDEO' ? (
+                        <Film size={16} />
+                      ) : (
+                        <ImageIcon size={16} />
+                      )}
+                      <span className="absolute left-0 top-0 rounded-br-lg bg-black/60 px-1.5 py-0.5 font-mono text-[9.5px] font-semibold leading-none text-white">
+                        {f.orderNumber}
+                      </span>
                     </div>
                     <div className="min-w-0 flex-1">
                       <div className="truncate text-[12px] font-medium">{f.originalFileName}</div>
-                      {f.primary && (
-                        <Badge variant="accent" className="mt-0.5">
-                          {t('media.primary')}
-                        </Badge>
-                      )}
+                      <div className="mt-0.5 flex items-center gap-1.5">
+                        <span className="text-[11px] text-muted">
+                          {t('vehicles.order')}: {f.orderNumber}
+                        </span>
+                        {f.primary && <Badge variant="accent">{t('media.primary')}</Badge>}
+                      </div>
                     </div>
                     <button
                       onClick={() => onDeleteMedia(f.id, f.originalFileName)}

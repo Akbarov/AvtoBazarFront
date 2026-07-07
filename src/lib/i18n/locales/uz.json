@@ -281,7 +281,27 @@
     "rejectTitle": "Buyurtma rad etilsinmi?",
     "rejectMsg": "Ushbu tekshiruv buyurtmasi rad etilsinmi?",
     "reasonPlaceholder": "Sabab (ixtiyoriy)…",
-    "reject": "Rad etish"
+    "reject": "Rad etish",
+    "report": "Hisobot",
+    "reportTitle": "Ekspert hisoboti",
+    "summary": "Xulosa",
+    "checklist": "Tekshiruv ro'yxati",
+    "noChecklist": "Tekshiruv ro'yxati to'ldirilmagan",
+    "mileage": "Tekshiruv paytidagi probeg",
+    "inspectedAt": "Tekshiruv sanasi",
+    "files": "Fayllar",
+    "published": "E'lon qilingan",
+    "notPublished": "E'lon qilinmagan",
+    "visibility": {
+      "PUBLIC": "Ochiq",
+      "PRIVATE_TO_REQUESTER": "Maxfiy"
+    },
+    "itemStatus": {
+      "OK": "OK",
+      "MINOR": "Kichik kamchilik",
+      "MAJOR": "Jiddiy muammo",
+      "NOT_APPLICABLE": "Tegishli emas"
+    }
   },
   "vehicles": {
     "title": "E'lonlar",

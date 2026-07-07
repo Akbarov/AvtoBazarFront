@@ -281,7 +281,27 @@
     "rejectTitle": "Отклонить заявку?",
     "rejectMsg": "Отклонить эту заявку на осмотр?",
     "reasonPlaceholder": "Причина (необязательно)…",
-    "reject": "Отклонить"
+    "reject": "Отклонить",
+    "report": "Отчёт",
+    "reportTitle": "Отчёт эксперта",
+    "summary": "Заключение",
+    "checklist": "Чек-лист",
+    "noChecklist": "Чек-лист не заполнен",
+    "mileage": "Пробег на момент осмотра",
+    "inspectedAt": "Дата осмотра",
+    "files": "Файлы",
+    "published": "Опубликован",
+    "notPublished": "Не опубликован",
+    "visibility": {
+      "PUBLIC": "Публичный",
+      "PRIVATE_TO_REQUESTER": "Приватный"
+    },
+    "itemStatus": {
+      "OK": "ОК",
+      "MINOR": "Мелкие замечания",
+      "MAJOR": "Серьёзная проблема",
+      "NOT_APPLICABLE": "Н/П"
+    }
   },
   "vehicles": {
     "title": "Объявления",

@@ -281,7 +281,27 @@
     "rejectTitle": "Reject request?",
     "rejectMsg": "Reject this inspection request?",
     "reasonPlaceholder": "Reason (optional)…",
-    "reject": "Reject"
+    "reject": "Reject",
+    "report": "Report",
+    "reportTitle": "Expert report",
+    "summary": "Summary",
+    "checklist": "Checklist",
+    "noChecklist": "Checklist not filled",
+    "mileage": "Mileage at inspection",
+    "inspectedAt": "Inspected at",
+    "files": "Files",
+    "published": "Published",
+    "notPublished": "Not published",
+    "visibility": {
+      "PUBLIC": "Public",
+      "PRIVATE_TO_REQUESTER": "Private"
+    },
+    "itemStatus": {
+      "OK": "OK",
+      "MINOR": "Minor issues",
+      "MAJOR": "Major issue",
+      "NOT_APPLICABLE": "N/A"
+    }
   },
   "vehicles": {
     "title": "Listings",

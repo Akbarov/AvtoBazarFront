@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { Eye, UserPlus, X } from 'lucide-react'
+import { Eye, FileText, UserPlus, X } from 'lucide-react'
 import { inspectionsApi } from '@/lib/api/resources/inspections'
 import { criteria, type SearchCriteria } from '@/lib/api/pageable'
 import type { InspectionRequestResponse } from '@/types/api'
@@ -15,6 +15,7 @@ import { parseApiError } from '@/lib/api/errors'
 import { formatEpoch, formatPrice } from '@/lib/utils'
 import { AssignExpertModal } from './AssignExpertModal'
 import { InspectionDetailModal } from './InspectionDetailModal'
+import { InspectionReportModal } from './InspectionReportModal'
 import { InspectionStatusBadge } from './InspectionStatusBadge'
 import { useInspectionMutations } from './useInspectionMutations'
 
@@ -37,6 +38,7 @@ export function InspectionsPage() {
   const [detail, setDetail] = useState<InspectionRequestResponse | null>(null)
   const [assigning, setAssigning] = useState<InspectionRequestResponse | null>(null)
   const [rejecting, setRejecting] = useState<InspectionRequestResponse | null>(null)
+  const [reportFor, setReportFor] = useState<InspectionRequestResponse | null>(null)
 
   async function onRejectSubmit(reason: string | undefined) {
     if (!rejecting) return
@@ -150,6 +152,15 @@ export function InspectionsPage() {
               </button>
             </>
           )}
+          {r.status === 'COMPLETED' && (
+            <button
+              onClick={() => setReportFor(r)}
+              className={`${iconBtn} text-accent hover:bg-accent-soft`}
+              title={t('inspections.report')}
+            >
+              <FileText size={15} />
+            </button>
+          )}
         </div>
       ),
     },
@@ -197,6 +208,8 @@ export function InspectionsPage() {
       <InspectionDetailModal inspection={detail} onClose={() => setDetail(null)} />
 
       <AssignExpertModal inspection={assigning} onClose={() => setAssigning(null)} />
+
+      <InspectionReportModal inspection={reportFor} onClose={() => setReportFor(null)} />
 
       <ReasonDialog
         open={!!rejecting}

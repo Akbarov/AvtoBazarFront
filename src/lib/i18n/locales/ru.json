@@ -4,6 +4,7 @@
     "vehicles": "Объявления",
     "users": "Пользователи",
     "experts": "Эксперты",
+    "inspections": "Осмотры",
     "brands": "Бренды",
     "models": "Модели",
     "soato": "Регионы"
@@ -220,6 +221,54 @@
     "applied": "Заявка подана",
     "emptyTitle": "Экспертов пока нет",
     "emptyMsg": "Заявки экспертов появятся здесь."
+  },
+  "inspections": {
+    "title": "Осмотры",
+    "subtitle": "Заявки на экспертный осмотр автомобилей",
+    "allStatuses": "Статус: все",
+    "allSpecs": "Специализация: все",
+    "status": {
+      "REQUESTED": "Запрошен",
+      "ASSIGNED": "Назначен эксперт",
+      "SCHEDULED": "Запланирован",
+      "IN_PROGRESS": "В процессе",
+      "COMPLETED": "Завершён",
+      "CANCELLED": "Отменён",
+      "REJECTED": "Отклонён"
+    },
+    "role": {
+      "SELLER": "Продавец",
+      "BUYER": "Покупатель"
+    },
+    "payment": {
+      "UNPAID": "Не оплачен",
+      "PAID": "Оплачен",
+      "REFUNDED": "Возврат"
+    },
+    "colVehicle": "Объявление",
+    "colRequester": "Заказчик",
+    "colExpert": "Эксперт",
+    "colSpec": "Специализация",
+    "colStatus": "Статус",
+    "colScheduled": "Время осмотра",
+    "colPrice": "Цена",
+    "colCreated": "Создан",
+    "colActions": "Действия",
+    "view": "Подробнее",
+    "notAssigned": "не назначен",
+    "detailTitle": "Заявка на осмотр",
+    "vehicle": "Объявление",
+    "requester": "Заказчик",
+    "expert": "Эксперт",
+    "scheduled": "Время осмотра",
+    "location": "Адрес",
+    "price": "Цена",
+    "paymentStatus": "Оплата",
+    "note": "Комментарий заказчика",
+    "cancelReason": "Причина отмены/отказа",
+    "created": "Создан",
+    "emptyTitle": "Заявок пока нет",
+    "emptyMsg": "Заявки на осмотр появятся здесь."
   },
   "vehicles": {
     "title": "Объявления",

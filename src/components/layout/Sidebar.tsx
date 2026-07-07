@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import {
   Car,
   CarFront,
+  ClipboardCheck,
   LayoutDashboard,
   MapPin,
   Tag,
@@ -23,6 +24,7 @@ const NAV: NavItem[] = [
   { to: '/vehicles', icon: Car, key: 'nav.vehicles' },
   { to: '/users', icon: Users, key: 'nav.users' },
   { to: '/experts', icon: Wrench, key: 'nav.experts' },
+  { to: '/inspections', icon: ClipboardCheck, key: 'nav.inspections' },
   { to: '/brands', icon: Tag, key: 'nav.brands' },
   { to: '/models', icon: CarFront, key: 'nav.models' },
   { to: '/soato', icon: MapPin, key: 'nav.soato' },

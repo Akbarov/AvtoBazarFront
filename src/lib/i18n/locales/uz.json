@@ -4,6 +4,7 @@
     "vehicles": "E'lonlar",
     "users": "Foydalanuvchilar",
     "experts": "Ekspertlar",
+    "inspections": "Tekshiruvlar",
     "brands": "Brendlar",
     "models": "Modellar",
     "soato": "Hududlar"
@@ -220,6 +221,54 @@
     "applied": "Ariza sanasi",
     "emptyTitle": "Hozircha ekspertlar yo'q",
     "emptyMsg": "Ekspert arizalari shu yerda ko'rinadi."
+  },
+  "inspections": {
+    "title": "Tekshiruvlar",
+    "subtitle": "Avtomobilni ekspert tekshiruviga buyurtmalar",
+    "allStatuses": "Status: barchasi",
+    "allSpecs": "Mutaxassislik: barchasi",
+    "status": {
+      "REQUESTED": "So'ralgan",
+      "ASSIGNED": "Ekspert tayinlangan",
+      "SCHEDULED": "Rejalashtirilgan",
+      "IN_PROGRESS": "Jarayonda",
+      "COMPLETED": "Yakunlangan",
+      "CANCELLED": "Bekor qilingan",
+      "REJECTED": "Rad etilgan"
+    },
+    "role": {
+      "SELLER": "Sotuvchi",
+      "BUYER": "Xaridor"
+    },
+    "payment": {
+      "UNPAID": "To'lanmagan",
+      "PAID": "To'langan",
+      "REFUNDED": "Qaytarilgan"
+    },
+    "colVehicle": "E'lon",
+    "colRequester": "Buyurtmachi",
+    "colExpert": "Ekspert",
+    "colSpec": "Mutaxassislik",
+    "colStatus": "Status",
+    "colScheduled": "Tekshiruv vaqti",
+    "colPrice": "Narx",
+    "colCreated": "Yaratilgan",
+    "colActions": "Amallar",
+    "view": "Batafsil",
+    "notAssigned": "tayinlanmagan",
+    "detailTitle": "Tekshiruv buyurtmasi",
+    "vehicle": "E'lon",
+    "requester": "Buyurtmachi",
+    "expert": "Ekspert",
+    "scheduled": "Tekshiruv vaqti",
+    "location": "Manzil",
+    "price": "Narx",
+    "paymentStatus": "To'lov",
+    "note": "Buyurtmachi izohi",
+    "cancelReason": "Bekor qilish sababi",
+    "created": "Yaratilgan",
+    "emptyTitle": "Hozircha buyurtmalar yo'q",
+    "emptyMsg": "Tekshiruv buyurtmalari shu yerda ko'rinadi."
   },
   "vehicles": {
     "title": "E'lonlar",

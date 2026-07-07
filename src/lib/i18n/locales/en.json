@@ -4,6 +4,7 @@
     "vehicles": "Listings",
     "users": "Users",
     "experts": "Experts",
+    "inspections": "Inspections",
     "brands": "Brands",
     "models": "Models",
     "soato": "Regions"
@@ -220,6 +221,54 @@
     "applied": "Applied",
     "emptyTitle": "No experts yet",
     "emptyMsg": "Expert applications will appear here."
+  },
+  "inspections": {
+    "title": "Inspections",
+    "subtitle": "Expert vehicle inspection requests",
+    "allStatuses": "Status: all",
+    "allSpecs": "Specialization: all",
+    "status": {
+      "REQUESTED": "Requested",
+      "ASSIGNED": "Expert assigned",
+      "SCHEDULED": "Scheduled",
+      "IN_PROGRESS": "In progress",
+      "COMPLETED": "Completed",
+      "CANCELLED": "Cancelled",
+      "REJECTED": "Rejected"
+    },
+    "role": {
+      "SELLER": "Seller",
+      "BUYER": "Buyer"
+    },
+    "payment": {
+      "UNPAID": "Unpaid",
+      "PAID": "Paid",
+      "REFUNDED": "Refunded"
+    },
+    "colVehicle": "Listing",
+    "colRequester": "Requester",
+    "colExpert": "Expert",
+    "colSpec": "Specialization",
+    "colStatus": "Status",
+    "colScheduled": "Scheduled at",
+    "colPrice": "Price",
+    "colCreated": "Created",
+    "colActions": "Actions",
+    "view": "Details",
+    "notAssigned": "not assigned",
+    "detailTitle": "Inspection request",
+    "vehicle": "Listing",
+    "requester": "Requester",
+    "expert": "Expert",
+    "scheduled": "Scheduled at",
+    "location": "Address",
+    "price": "Price",
+    "paymentStatus": "Payment",
+    "note": "Requester note",
+    "cancelReason": "Cancel/reject reason",
+    "created": "Created",
+    "emptyTitle": "No requests yet",
+    "emptyMsg": "Inspection requests will appear here."
   },
   "vehicles": {
     "title": "Listings",

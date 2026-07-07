@@ -268,7 +268,20 @@
     "cancelReason": "Cancel/reject reason",
     "created": "Created",
     "emptyTitle": "No requests yet",
-    "emptyMsg": "Inspection requests will appear here."
+    "emptyMsg": "Inspection requests will appear here.",
+    "assign": "Assign expert",
+    "assignTitle": "Assign expert",
+    "confirmAssign": "Assign",
+    "expertLabel": "Expert",
+    "selectExpert": "Select an expert…",
+    "noMatchingExperts": "No approved experts with this specialization",
+    "priceLabel": "Price",
+    "currencyLabel": "Currency",
+    "inspectionsShort": "insp.",
+    "rejectTitle": "Reject request?",
+    "rejectMsg": "Reject this inspection request?",
+    "reasonPlaceholder": "Reason (optional)…",
+    "reject": "Reject"
   },
   "vehicles": {
     "title": "Listings",

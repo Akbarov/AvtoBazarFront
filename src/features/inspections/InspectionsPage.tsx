@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { Eye } from 'lucide-react'
+import { Eye, UserPlus, X } from 'lucide-react'
 import { inspectionsApi } from '@/lib/api/resources/inspections'
 import { criteria, type SearchCriteria } from '@/lib/api/pageable'
 import type { InspectionRequestResponse } from '@/types/api'
@@ -9,15 +9,22 @@ import { useServerGrid } from '@/components/data-grid/useServerGrid'
 import { ServerDataGrid, type ColumnSpec } from '@/components/data-grid/ServerDataGrid'
 import { Badge } from '@/components/ui/badge'
 import { Select } from '@/components/ui/select'
+import { useToast } from '@/components/common/toast'
+import { ReasonDialog } from '@/components/common/ReasonDialog'
+import { parseApiError } from '@/lib/api/errors'
 import { formatEpoch, formatPrice } from '@/lib/utils'
+import { AssignExpertModal } from './AssignExpertModal'
 import { InspectionDetailModal } from './InspectionDetailModal'
 import { InspectionStatusBadge } from './InspectionStatusBadge'
+import { useInspectionMutations } from './useInspectionMutations'
 
 const STATUSES = ['REQUESTED', 'ASSIGNED', 'SCHEDULED', 'IN_PROGRESS', 'COMPLETED', 'CANCELLED', 'REJECTED'] as const
 const SPECS = ['BODY', 'ENGINE', 'TRANSMISSION', 'ELECTRICAL', 'SUSPENSION', 'DIAGNOSTICS', 'GENERAL'] as const
 
 export function InspectionsPage() {
   const { t, i18n } = useTranslation()
+  const toast = useToast()
+  const { reject } = useInspectionMutations()
 
   const grid = useServerGrid<InspectionRequestResponse>({
     queryKey: 'inspections',
@@ -28,6 +35,19 @@ export function InspectionsPage() {
   const [status, setStatus] = useState('')
   const [spec, setSpec] = useState('')
   const [detail, setDetail] = useState<InspectionRequestResponse | null>(null)
+  const [assigning, setAssigning] = useState<InspectionRequestResponse | null>(null)
+  const [rejecting, setRejecting] = useState<InspectionRequestResponse | null>(null)
+
+  async function onRejectSubmit(reason: string | undefined) {
+    if (!rejecting) return
+    try {
+      await reject.mutateAsync({ id: rejecting.id, reason })
+      toast.success(t('toast.updated'))
+      setRejecting(null)
+    } catch (e) {
+      toast.danger(parseApiError(e, t('toast.genericError')).message)
+    }
+  }
 
   useEffect(() => {
     const search: SearchCriteria[] = []
@@ -112,6 +132,24 @@ export function InspectionsPage() {
           >
             <Eye size={15} />
           </button>
+          {r.status === 'REQUESTED' && (
+            <>
+              <button
+                onClick={() => setAssigning(r)}
+                className={`${iconBtn} text-green hover:bg-green-soft`}
+                title={t('inspections.assign')}
+              >
+                <UserPlus size={15} />
+              </button>
+              <button
+                onClick={() => setRejecting(r)}
+                className={`${iconBtn} text-danger hover:bg-danger-soft`}
+                title={t('inspections.reject')}
+              >
+                <X size={15} />
+              </button>
+            </>
+          )}
         </div>
       ),
     },
@@ -157,6 +195,20 @@ export function InspectionsPage() {
       />
 
       <InspectionDetailModal inspection={detail} onClose={() => setDetail(null)} />
+
+      <AssignExpertModal inspection={assigning} onClose={() => setAssigning(null)} />
+
+      <ReasonDialog
+        open={!!rejecting}
+        title={t('inspections.rejectTitle')}
+        message={t('inspections.rejectMsg')}
+        confirmLabel={t('inspections.reject')}
+        danger
+        placeholder={t('inspections.reasonPlaceholder')}
+        pending={reject.isPending}
+        onClose={() => setRejecting(null)}
+        onSubmit={onRejectSubmit}
+      />
     </div>
   )
 }

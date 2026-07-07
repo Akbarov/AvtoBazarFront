@@ -268,7 +268,20 @@
     "cancelReason": "Bekor qilish sababi",
     "created": "Yaratilgan",
     "emptyTitle": "Hozircha buyurtmalar yo'q",
-    "emptyMsg": "Tekshiruv buyurtmalari shu yerda ko'rinadi."
+    "emptyMsg": "Tekshiruv buyurtmalari shu yerda ko'rinadi.",
+    "assign": "Ekspert tayinlash",
+    "assignTitle": "Ekspert tayinlash",
+    "confirmAssign": "Tayinlash",
+    "expertLabel": "Ekspert",
+    "selectExpert": "Ekspertni tanlang…",
+    "noMatchingExperts": "Bu mutaxassislik bo'yicha tasdiqlangan ekspertlar yo'q",
+    "priceLabel": "Narx",
+    "currencyLabel": "Valyuta",
+    "inspectionsShort": "tek.",
+    "rejectTitle": "Buyurtma rad etilsinmi?",
+    "rejectMsg": "Ushbu tekshiruv buyurtmasi rad etilsinmi?",
+    "reasonPlaceholder": "Sabab (ixtiyoriy)…",
+    "reject": "Rad etish"
   },
   "vehicles": {
     "title": "E'lonlar",

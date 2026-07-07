@@ -268,7 +268,20 @@
     "cancelReason": "Причина отмены/отказа",
     "created": "Создан",
     "emptyTitle": "Заявок пока нет",
-    "emptyMsg": "Заявки на осмотр появятся здесь."
+    "emptyMsg": "Заявки на осмотр появятся здесь.",
+    "assign": "Назначить эксперта",
+    "assignTitle": "Назначение эксперта",
+    "confirmAssign": "Назначить",
+    "expertLabel": "Эксперт",
+    "selectExpert": "Выберите эксперта…",
+    "noMatchingExperts": "Нет одобренных экспертов с этой специализацией",
+    "priceLabel": "Цена",
+    "currencyLabel": "Валюта",
+    "inspectionsShort": "осм.",
+    "rejectTitle": "Отклонить заявку?",
+    "rejectMsg": "Отклонить эту заявку на осмотр?",
+    "reasonPlaceholder": "Причина (необязательно)…",
+    "reject": "Отклонить"
   },
   "vehicles": {
     "title": "Объявления",

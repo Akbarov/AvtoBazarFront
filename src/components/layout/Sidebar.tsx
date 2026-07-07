@@ -7,6 +7,7 @@ import {
   MapPin,
   Tag,
   Users,
+  Wrench,
   type LucideIcon,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -21,6 +22,7 @@ const NAV: NavItem[] = [
   { to: '/dashboard', icon: LayoutDashboard, key: 'nav.dashboard' },
   { to: '/vehicles', icon: Car, key: 'nav.vehicles' },
   { to: '/users', icon: Users, key: 'nav.users' },
+  { to: '/experts', icon: Wrench, key: 'nav.experts' },
   { to: '/brands', icon: Tag, key: 'nav.brands' },
   { to: '/models', icon: CarFront, key: 'nav.models' },
   { to: '/soato', icon: MapPin, key: 'nav.soato' },

@@ -8,6 +8,7 @@ const SECTION_TITLE: Record<string, string> = {
   dashboard: 'nav.dashboard',
   vehicles: 'nav.vehicles',
   users: 'nav.users',
+  experts: 'nav.experts',
   brands: 'nav.brands',
   models: 'nav.models',
   soato: 'nav.soato',

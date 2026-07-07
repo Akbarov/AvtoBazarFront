@@ -29,6 +29,14 @@ export const endpoints = {
     soatoPageable: `${CONTROL}/soato/pageable`,
     soatoById: (id: string) => `${CONTROL}/soato/${id}`,
     soatoUpload: `${CONTROL}/soato/upload`,
+    expertsPageable: `${CONTROL}/experts/pageable`,
+    expert: (id: string) => `${CONTROL}/experts/${id}`,
+    expertApprove: (userId: string) => `${CONTROL}/experts/${userId}/approve`,
+    expertReject: (userId: string) => `${CONTROL}/experts/${userId}/reject`,
+    expertSuspend: (userId: string) => `${CONTROL}/experts/${userId}/suspend`,
+    inspectionsPageable: `${CONTROL}/inspections/pageable`,
+    inspectionAssign: (id: string) => `${CONTROL}/inspections/${id}/assign`,
+    inspectionReject: (id: string) => `${CONTROL}/inspections/${id}/reject`,
   },
   public: {
     vehicle: (id: string) => `${API}/vehicles/${id}`,
@@ -36,6 +44,10 @@ export const endpoints = {
     vehicleMediaUpload: `${API}/vehicles/media`,
     soatoById: (id: string) => `${API}/soato/${id}`,
     enums: (name: string) => `${API}/vehicles/enums/${name}`,
+    inspection: (id: string) => `${API}/inspections/${id}`,
+    inspectionReport: (id: string) => `${API}/inspections/reports/${id}`,
+    inspectionReportByRequest: (requestId: string) => `${API}/inspections/reports/by-request/${requestId}`,
+    checklistTemplate: (specialization: string) => `${API}/inspections/reports/templates/${specialization}`,
   },
 } as const
 

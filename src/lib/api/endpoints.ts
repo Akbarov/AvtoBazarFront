@@ -37,6 +37,8 @@ export const endpoints = {
     inspectionsPageable: `${CONTROL}/inspections/pageable`,
     inspectionAssign: (id: string) => `${CONTROL}/inspections/${id}/assign`,
     inspectionReject: (id: string) => `${CONTROL}/inspections/${id}/reject`,
+    ratingsPageable: `${CONTROL}/ratings/pageable`,
+    rating: (id: string) => `${CONTROL}/ratings/${id}`,
   },
   public: {
     vehicle: (id: string) => `${API}/vehicles/${id}`,

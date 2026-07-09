@@ -17,6 +17,7 @@ const SoatoImportPage = lazy(() => import('@/features/soato/SoatoImportPage').th
 const UsersPage = lazy(() => import('@/features/users/UsersPage').then((m) => ({ default: m.UsersPage })))
 const ExpertsPage = lazy(() => import('@/features/experts/ExpertsPage').then((m) => ({ default: m.ExpertsPage })))
 const InspectionsPage = lazy(() => import('@/features/inspections/InspectionsPage').then((m) => ({ default: m.InspectionsPage })))
+const RatingsPage = lazy(() => import('@/features/ratings/RatingsPage').then((m) => ({ default: m.RatingsPage })))
 
 // Suspense boundary inside the shell so lazy pages show the loader without unmounting the chrome.
 function SuspendedOutlet() {
@@ -44,6 +45,7 @@ export function AppRoutes() {
           <Route path="/vehicles" element={<VehiclesListPage />} />
           <Route path="/vehicles/:id" element={<VehicleDetailPage />} />
           <Route path="/users" element={<UsersPage />} />
+          <Route path="/ratings" element={<RatingsPage />} />
           <Route path="/experts" element={<ExpertsPage />} />
           <Route path="/inspections" element={<InspectionsPage />} />
           <Route path="/brands" element={<BrandsPage />} />

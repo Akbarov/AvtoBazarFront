@@ -253,6 +253,14 @@ export function VehicleDetailPage() {
             <div className="mt-3 border-t border-border pt-3 text-[12px] text-fg-2">
               {t('vehicles.registered')}: {formatEpoch(vehicle.owner?.registeredAt, i18n.language)}
             </div>
+            <div className="mt-2 text-[12px] text-fg-2">
+              {t('vehicles.sellerRating')}:{' '}
+              {vehicle.owner?.ratingCount ? (
+                <span className="font-medium text-fg">★ {vehicle.owner.ratingAvg} ({vehicle.owner.ratingCount})</span>
+              ) : (
+                <span className="text-muted">{t('vehicles.noRating')}</span>
+              )}
+            </div>
           </div>
 
           <div className="rounded-[14px] border border-border bg-surface p-[18px] shadow-sm">

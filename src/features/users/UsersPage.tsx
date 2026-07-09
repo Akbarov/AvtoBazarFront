@@ -123,6 +123,16 @@ export function UsersPage() {
         ),
     },
     {
+      id: 'rating',
+      header: t('users.colRating'),
+      cell: (u) =>
+        u.ratingCount ? (
+          <span className="font-medium">★ {u.ratingAvg} ({u.ratingCount})</span>
+        ) : (
+          <span className="text-muted">{t('users.noRating')}</span>
+        ),
+    },
+    {
       id: 'active',
       header: t('users.colActive'),
       cell: (u) =>

@@ -42,6 +42,8 @@ export interface UserRoleResponse {
   roles: Role[]
   verified: boolean
   active: boolean
+  ratingAvg: number | null
+  ratingCount: number
   // NOTE: no createdAt
 }
 
@@ -52,6 +54,8 @@ export interface VehicleOwnerResponse {
   phoneNumber: string
   verified: boolean
   registeredAt: number
+  ratingAvg: number | null
+  ratingCount: number
 }
 
 export interface VehicleResponse {
@@ -341,6 +345,20 @@ export interface ChecklistTemplateSection {
 export interface ChecklistTemplateResponse {
   specialization: ExpertSpecialization
   sections: ChecklistTemplateSection[]
+}
+
+// --- ratings ---
+export interface UserRatingAdminResponse {
+  id: string
+  raterUserId: string
+  raterName: string | null
+  raterPhone: string | null
+  ratedUserId: string
+  ratedName: string | null
+  ratedPhone: string | null
+  stars: number
+  createdAt: number
+  modifiedAt: number
 }
 
 // --- errors ---

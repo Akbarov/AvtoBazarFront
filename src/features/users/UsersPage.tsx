@@ -14,6 +14,7 @@ import { Button } from '@/components/ui/button'
 import { useConfirm } from '@/components/common/confirm'
 import { useToast } from '@/components/common/toast'
 import { parseApiError } from '@/lib/api/errors'
+import { useDebouncedValue } from '@/lib/hooks/useDebouncedValue'
 import { initials } from '@/lib/utils'
 
 export function UsersPage() {
@@ -31,19 +32,17 @@ export function UsersPage() {
   const [searchText, setSearchText] = useState('')
   const [verified, setVerified] = useState('')
   const [active, setActive] = useState('')
+  const debouncedSearch = useDebouncedValue(searchText)
 
   useEffect(() => {
-    const id = window.setTimeout(() => {
-      const search: SearchCriteria[] = []
-      const text = searchText.trim()
-      if (text) search.push(/\d/.test(text) ? criteria('phoneNumber', '=', text) : criteria('fullName', '=', text))
-      if (verified) search.push(criteria('verified', '=', verified === 'true'))
-      if (active) search.push(criteria('active', '=', active === 'true'))
-      grid.setSearch(search)
-    }, 350)
-    return () => window.clearTimeout(id)
+    const search: SearchCriteria[] = []
+    const text = debouncedSearch.trim()
+    if (text) search.push(/\d/.test(text) ? criteria('phoneNumber', '=', text) : criteria('fullName', '=', text))
+    if (verified) search.push(criteria('verified', '=', verified === 'true'))
+    if (active) search.push(criteria('active', '=', active === 'true'))
+    grid.setSearch(search)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchText, verified, active])
+  }, [debouncedSearch, verified, active])
 
   const roleMutation = useMutation({
     mutationFn: ({ userId, grant }: { userId: string; grant: boolean }) =>

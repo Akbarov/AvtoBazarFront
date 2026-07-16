@@ -13,6 +13,7 @@ import { Select } from '@/components/ui/select'
 import { useConfirm } from '@/components/common/confirm'
 import { useToast } from '@/components/common/toast'
 import { parseApiError } from '@/lib/api/errors'
+import { useDebouncedValue } from '@/lib/hooks/useDebouncedValue'
 import { useBrandOptions } from '@/features/shared/useOptions'
 import { ModelForm } from './ModelForm'
 import { useModelMutations } from './useModelMutations'
@@ -34,18 +35,16 @@ export function ModelsPage() {
   const [brandFilter, setBrandFilter] = useState('')
   const [formOpen, setFormOpen] = useState(false)
   const [editing, setEditing] = useState<VehicleModelResponse | null>(null)
+  const debouncedSearch = useDebouncedValue(searchText)
 
   useEffect(() => {
-    const id = window.setTimeout(() => {
-      const search: SearchCriteria[] = []
-      if (brandFilter) search.push(criteria('brandId', '=', brandFilter))
-      // Model name is localized jsonb — search the current UI language column.
-      if (searchText.trim()) search.push(criteria(`name.${i18n.language}`, '=', searchText.trim()))
-      grid.setSearch(search)
-    }, 350)
-    return () => window.clearTimeout(id)
+    const search: SearchCriteria[] = []
+    if (brandFilter) search.push(criteria('brandId', '=', brandFilter))
+    // Model name is localized jsonb — search the current UI language column.
+    if (debouncedSearch.trim()) search.push(criteria(`name.${i18n.language}`, '=', debouncedSearch.trim()))
+    grid.setSearch(search)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchText, brandFilter])
+  }, [debouncedSearch, brandFilter])
 
   function openCreate() {
     setEditing(null)

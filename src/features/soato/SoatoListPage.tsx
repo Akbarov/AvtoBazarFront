@@ -14,6 +14,7 @@ import { Select } from '@/components/ui/select'
 import { useConfirm } from '@/components/common/confirm'
 import { useToast } from '@/components/common/toast'
 import { parseApiError } from '@/lib/api/errors'
+import { useDebouncedValue } from '@/lib/hooks/useDebouncedValue'
 import { SoatoForm } from './SoatoForm'
 import { useSoatoMutations } from './useSoatoMutations'
 
@@ -34,18 +35,16 @@ export function SoatoListPage() {
   const [typeFilter, setTypeFilter] = useState('')
   const [formOpen, setFormOpen] = useState(false)
   const [editing, setEditing] = useState<SoatoResponse | null>(null)
+  const debouncedSearch = useDebouncedValue(searchText)
 
   useEffect(() => {
-    const id = window.setTimeout(() => {
-      const search: SearchCriteria[] = []
-      if (typeFilter) search.push(criteria('type', '=', typeFilter))
-      // SOATO names live in explicit columns; search the Uzbek column (LIKE).
-      if (searchText.trim()) search.push(criteria('nameUz', '=', searchText.trim()))
-      grid.setSearch(search)
-    }, 350)
-    return () => window.clearTimeout(id)
+    const search: SearchCriteria[] = []
+    if (typeFilter) search.push(criteria('type', '=', typeFilter))
+    // SOATO names live in explicit columns; search the Uzbek column (LIKE).
+    if (debouncedSearch.trim()) search.push(criteria('nameUz', '=', debouncedSearch.trim()))
+    grid.setSearch(search)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchText, typeFilter])
+  }, [debouncedSearch, typeFilter])
 
   function openCreate() {
     setEditing(null)

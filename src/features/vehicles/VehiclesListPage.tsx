@@ -17,6 +17,7 @@ import { ColorSwatch } from '@/components/common/ColorSwatch'
 import { useConfirm } from '@/components/common/confirm'
 import { useToast } from '@/components/common/toast'
 import { parseApiError } from '@/lib/api/errors'
+import { useDebouncedValue } from '@/lib/hooks/useDebouncedValue'
 import { formatNumber, formatPrice } from '@/lib/utils'
 import { useBrandOptions } from '@/features/shared/useOptions'
 import { toColorMap, toLabelMap, toOptions, useColors, useEnum } from '@/lib/enums/enumCache'
@@ -47,21 +48,19 @@ export function VehiclesListPage() {
   const [category, setCategory] = useState('')
   const [brand, setBrand] = useState('')
   const [currency, setCurrency] = useState('')
+  const debouncedSearch = useDebouncedValue(searchText)
 
   useEffect(() => {
-    const id = window.setTimeout(() => {
-      const search: SearchCriteria[] = []
-      if (searchText.trim()) search.push(criteria('description', '=', searchText.trim()))
-      if (status) search.push(criteria('active', '=', status === 'true'))
-      if (verification) search.push(criteria('verified', '=', verification === 'true'))
-      if (category) search.push(criteria('category', '=', category))
-      if (brand) search.push(criteria('brandId', '=', brand))
-      if (currency) search.push(criteria('currency', '=', currency))
-      grid.setSearch(search)
-    }, 350)
-    return () => window.clearTimeout(id)
+    const search: SearchCriteria[] = []
+    if (debouncedSearch.trim()) search.push(criteria('description', '=', debouncedSearch.trim()))
+    if (status) search.push(criteria('active', '=', status === 'true'))
+    if (verification) search.push(criteria('verified', '=', verification === 'true'))
+    if (category) search.push(criteria('category', '=', category))
+    if (brand) search.push(criteria('brandId', '=', brand))
+    if (currency) search.push(criteria('currency', '=', currency))
+    grid.setSearch(search)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchText, status, verification, category, brand, currency])
+  }, [debouncedSearch, status, verification, category, brand, currency])
 
   const toggle = useMutation({
     mutationFn: ({ id, activate }: { id: string; activate: boolean }) =>

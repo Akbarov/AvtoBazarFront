@@ -12,6 +12,7 @@ import { Input } from '@/components/ui/input'
 import { useConfirm } from '@/components/common/confirm'
 import { useToast } from '@/components/common/toast'
 import { parseApiError } from '@/lib/api/errors'
+import { useDebouncedValue } from '@/lib/hooks/useDebouncedValue'
 import { initials } from '@/lib/utils'
 import { BrandForm } from './BrandForm'
 import { useBrandMutations } from './useBrandMutations'
@@ -31,16 +32,14 @@ export function BrandsPage() {
   const [searchText, setSearchText] = useState('')
   const [formOpen, setFormOpen] = useState(false)
   const [editing, setEditing] = useState<VehicleBrandResponse | null>(null)
+  const debouncedSearch = useDebouncedValue(searchText)
 
-  // Debounce the free-text search into a server search criterion on `name`.
   useEffect(() => {
-    const id = window.setTimeout(() => {
-      // Brand name is localized jsonb — search the current UI language column (name.uz|ru|en).
-      grid.setSearch(searchText.trim() ? [criteria(`name.${i18n.language}`, '=', searchText.trim())] : [])
-    }, 350)
-    return () => window.clearTimeout(id)
+    // Brand name is localized jsonb — search the current UI language column (name.uz|ru|en).
+    const text = debouncedSearch.trim()
+    grid.setSearch(text ? [criteria(`name.${i18n.language}`, '=', text)] : [])
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchText])
+  }, [debouncedSearch])
 
   function openCreate() {
     setEditing(null)

@@ -290,6 +290,8 @@ export function VehiclesListPage() {
         rows={grid.rows}
         meta={grid.meta}
         isLoading={grid.isLoading}
+        isError={grid.isError}
+        onRetry={grid.refetch}
         sort={grid.sort}
         onToggleSort={grid.toggleSort}
         page={grid.page}

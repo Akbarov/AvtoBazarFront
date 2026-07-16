@@ -46,7 +46,10 @@
     "rows": "Qatorlar",
     "of": "/",
     "noResultsTitle": "Hech narsa topilmadi",
-    "noResultsMsg": "Filtrlarni o'zgartiring yoki tozalang."
+    "noResultsMsg": "Filtrlarni o'zgartiring yoki tozalang.",
+    "errorTitle": "Ma'lumotlarni yuklab bo'lmadi",
+    "errorMsg": "Ulanishni tekshirib, qayta urinib ko'ring.",
+    "retry": "Qayta urinish"
   },
   "confirm": {
     "confirm": "Tasdiqlash",

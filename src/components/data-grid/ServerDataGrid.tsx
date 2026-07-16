@@ -1,9 +1,11 @@
 import type { ReactNode } from 'react'
+import { useTranslation } from 'react-i18next'
 import { ArrowDown, ArrowUp } from 'lucide-react'
 import type { PageableMeta, SortSpec } from '@/lib/api/pageable'
 import { cn } from '@/lib/utils'
 import { EmptyState } from '@/components/common/EmptyState'
 import { Pagination } from '@/components/common/Pagination'
+import { Button } from '@/components/ui/button'
 
 export interface ColumnSpec<T> {
   id: string
@@ -18,6 +20,8 @@ interface Props<T> {
   rows: T[]
   meta?: PageableMeta
   isLoading: boolean
+  isError?: boolean
+  onRetry?: () => void
   sort: SortSpec
   onToggleSort: (key: string) => void
   page: number
@@ -38,6 +42,8 @@ export function ServerDataGrid<T>({
   rows,
   meta,
   isLoading,
+  isError = false,
+  onRetry,
   sort,
   onToggleSort,
   page,
@@ -49,7 +55,9 @@ export function ServerDataGrid<T>({
   emptyTitle,
   emptyMessage,
 }: Props<T>) {
-  const showEmpty = !isLoading && rows.length === 0
+  const { t } = useTranslation()
+  const showError = !isLoading && isError && rows.length === 0
+  const showEmpty = !isLoading && !showError && rows.length === 0
 
   return (
     <div className="overflow-hidden rounded-[14px] border border-border bg-surface shadow-sm">
@@ -98,6 +106,18 @@ export function ServerDataGrid<T>({
           </tbody>
         </table>
       </div>
+
+      {showError && (
+        <div className="px-5 py-[54px] text-center">
+          <div className="mb-1 text-[14px] font-semibold text-danger">{t('grid.errorTitle')}</div>
+          <div className="text-[12.5px] text-muted">{t('grid.errorMsg')}</div>
+          {onRetry && (
+            <Button variant="outline" size="sm" className="mt-4" onClick={onRetry}>
+              {t('grid.retry')}
+            </Button>
+          )}
+        </div>
+      )}
 
       {showEmpty && <EmptyState title={emptyTitle} message={emptyMessage} />}
 

@@ -46,7 +46,10 @@
     "rows": "Rows",
     "of": "of",
     "noResultsTitle": "Nothing found",
-    "noResultsMsg": "Try adjusting or clearing the filters."
+    "noResultsMsg": "Try adjusting or clearing the filters.",
+    "errorTitle": "Failed to load data",
+    "errorMsg": "Check your connection and try again.",
+    "retry": "Retry"
   },
   "confirm": {
     "confirm": "Confirm",

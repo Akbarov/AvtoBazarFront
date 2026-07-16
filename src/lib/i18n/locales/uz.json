@@ -39,7 +39,8 @@
     "signedInAsAdmin": "ADMIN sifatida kirdingiz",
     "signOut": "Chiqish",
     "required": "Majburiy",
-    "optional": "Ixtiyoriy"
+    "optional": "Ixtiyoriy",
+    "toggleTheme": "Mavzuni almashtirish"
   },
   "grid": {
     "rows": "Qatorlar",

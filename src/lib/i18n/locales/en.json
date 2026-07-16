@@ -39,7 +39,8 @@
     "signedInAsAdmin": "Signed in as ADMIN",
     "signOut": "Sign out",
     "required": "Required",
-    "optional": "Optional"
+    "optional": "Optional",
+    "toggleTheme": "Toggle theme"
   },
   "grid": {
     "rows": "Rows",

@@ -39,7 +39,8 @@
     "signedInAsAdmin": "Вы вошли как ADMIN",
     "signOut": "Выйти",
     "required": "Обязательно",
-    "optional": "Необязательно"
+    "optional": "Необязательно",
+    "toggleTheme": "Переключить тему"
   },
   "grid": {
     "rows": "Строк",

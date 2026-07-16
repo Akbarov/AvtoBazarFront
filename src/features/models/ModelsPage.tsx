@@ -103,12 +103,16 @@ export function ModelsPage() {
         <div className="flex justify-end gap-1.5">
           <button
             onClick={() => openEdit(m)}
+            title={t('common.edit')}
+            aria-label={t('common.edit')}
             className="flex h-[30px] w-[30px] items-center justify-center rounded-lg border border-border bg-surface-2 text-fg-2 hover:text-fg"
           >
             <Pencil size={15} />
           </button>
           <button
             onClick={() => onDelete(m)}
+            title={t('common.delete')}
+            aria-label={t('common.delete')}
             className="flex h-[30px] w-[30px] items-center justify-center rounded-lg border border-border bg-surface-2 text-danger hover:bg-danger-soft"
           >
             <Trash2 size={15} />

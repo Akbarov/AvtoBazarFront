@@ -302,7 +302,7 @@ export function VehicleDetailPage() {
                   <div key={f.id} className="flex items-center gap-3 rounded-[10px] border border-border p-2">
                     <div className="relative flex h-11 w-11 flex-shrink-0 items-center justify-center overflow-hidden rounded-lg bg-surface-2 text-muted">
                       {f.fileType === 'IMAGE' && f.fileUrl ? (
-                        <img src={f.fileUrl} alt="" className="h-full w-full object-cover" />
+                        <img src={f.fileUrl} alt="" loading="lazy" decoding="async" className="h-full w-full object-cover" />
                       ) : f.fileType === 'VIDEO' ? (
                         <Film size={16} />
                       ) : (

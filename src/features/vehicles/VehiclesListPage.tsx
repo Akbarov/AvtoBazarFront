@@ -122,7 +122,7 @@ export function VehiclesListPage() {
           className="flex h-9 w-12 cursor-pointer items-center justify-center overflow-hidden rounded-lg border border-border bg-surface-2 text-muted"
         >
           {v.imageUrls?.[0] ? (
-            <img src={v.imageUrls[0]} alt="" className="h-full w-full object-cover" />
+            <img src={v.imageUrls[0]} alt="" loading="lazy" decoding="async" className="h-full w-full object-cover" />
           ) : (
             <Car size={18} strokeWidth={1.6} />
           )}

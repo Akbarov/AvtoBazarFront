@@ -149,6 +149,8 @@ export function InspectionReportModal({ inspection, onClose }: Props) {
                       <img
                         src={f.fileUrl}
                         alt={f.originalFileName ?? ''}
+                        loading="lazy"
+                        decoding="async"
                         className="h-20 w-full rounded-lg border border-border object-cover"
                       />
                     </a>

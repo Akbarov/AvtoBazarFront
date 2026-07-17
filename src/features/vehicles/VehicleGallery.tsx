@@ -91,7 +91,7 @@ export function VehicleGallery({ images }: Props) {
                   i === safeIndex ? 'border-accent ring-1 ring-accent' : 'border-border hover:border-border-strong',
                 )}
               >
-                <img src={url} alt="" className="h-full w-full object-cover" />
+                <img src={url} alt="" loading="lazy" decoding="async" className="h-full w-full object-cover" />
               </button>
             ))}
           </div>

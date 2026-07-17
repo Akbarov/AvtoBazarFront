@@ -75,7 +75,7 @@ export function BrandsPage() {
       header: t('brands.colLogo'),
       cell: (b) => (
         <div className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-lg border border-border bg-surface-2 text-[12px] font-bold text-muted">
-          {b.logoUrl ? <img src={b.logoUrl} alt="" className="h-full w-full object-cover" /> : initials(b.name)}
+          {b.logoUrl ? <img src={b.logoUrl} alt="" loading="lazy" decoding="async" className="h-full w-full object-cover" /> : initials(b.name)}
         </div>
       ),
     },

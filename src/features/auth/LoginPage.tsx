@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useDocumentTitle } from '@/lib/hooks/useDocumentTitle'
 import { QRCodeSVG } from 'qrcode.react'
 import { Car, Send } from 'lucide-react'
 import { authApi } from '@/lib/api/resources/auth'
@@ -11,6 +12,7 @@ import { cn } from '@/lib/utils'
 
 export function LoginPage() {
   const { t } = useTranslation()
+  useDocumentTitle(t('login.title'))
   const { completeLogin } = useAuth()
   const [step, setStep] = useState<1 | 2>(1)
   const [link, setLink] = useState<{ botUsername: string; deepLink: string } | null>(null)

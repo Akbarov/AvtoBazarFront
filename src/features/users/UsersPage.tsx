@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useDocumentTitle } from '@/lib/hooks/useDocumentTitle'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Search, ShieldCheck, ShieldOff } from 'lucide-react'
 import { usersApi } from '@/lib/api/resources/users'
@@ -19,6 +20,7 @@ import { initials } from '@/lib/utils'
 
 export function UsersPage() {
   const { t } = useTranslation()
+  useDocumentTitle(t('users.title'))
   const confirm = useConfirm()
   const toast = useToast()
   const qc = useQueryClient()

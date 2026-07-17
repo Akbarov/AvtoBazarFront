@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useDocumentTitle } from '@/lib/hooks/useDocumentTitle'
 import { Ban, Check, Eye, X } from 'lucide-react'
 import { expertsApi } from '@/lib/api/resources/experts'
 import { criteria } from '@/lib/api/pageable'
@@ -23,6 +24,7 @@ type ReasonAction = { kind: 'reject' | 'suspend'; expert: ExpertProfileResponse 
 
 export function ExpertsPage() {
   const { t, i18n } = useTranslation()
+  useDocumentTitle(t('experts.title'))
   const confirm = useConfirm()
   const toast = useToast()
   const { approve, reject, suspend } = useExpertMutations()

@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useDocumentTitle } from '@/lib/hooks/useDocumentTitle'
 import { Pencil, Plus, Search, Trash2 } from 'lucide-react'
 import { modelsApi } from '@/lib/api/resources/models'
 import { criteria, type SearchCriteria } from '@/lib/api/pageable'
@@ -20,6 +21,7 @@ import { useModelMutations } from './useModelMutations'
 
 export function ModelsPage() {
   const { t, i18n } = useTranslation()
+  useDocumentTitle(t('models.title'))
   const confirm = useConfirm()
   const toast = useToast()
   const { remove } = useModelMutations()

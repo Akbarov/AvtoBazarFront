@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+import { useDocumentTitle } from '@/lib/hooks/useDocumentTitle'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Trash2 } from 'lucide-react'
 import { ratingsApi } from '@/lib/api/resources/ratings'
@@ -13,6 +14,7 @@ import { formatEpoch } from '@/lib/utils'
 
 export function RatingsPage() {
   const { t, i18n } = useTranslation()
+  useDocumentTitle(t('ratings.title'))
   const confirm = useConfirm()
   const toast = useToast()
   const qc = useQueryClient()

@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { useDocumentTitle } from '@/lib/hooks/useDocumentTitle'
 import { useQuery } from '@tanstack/react-query'
 import { Car, CarFront, Check, Image as ImageIcon, MapPin, Tag, Users, X, type LucideIcon } from 'lucide-react'
 import { vehiclesApi } from '@/lib/api/resources/vehicles'
@@ -33,6 +34,7 @@ function Kpi({ icon: Icon, value, label }: { icon: LucideIcon; value: number | u
 
 export function DashboardPage() {
   const { t } = useTranslation()
+  useDocumentTitle(t('dashboard.title'))
   const navigate = useNavigate()
 
   const totalVehicles = useCount('vehicles', () => vehiclesApi.pageable(countOnly()))

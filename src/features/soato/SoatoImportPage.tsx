@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { useDocumentTitle } from '@/lib/hooks/useDocumentTitle'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Check, ChevronLeft, Loader2, Upload } from 'lucide-react'
 import { soatoApi } from '@/lib/api/resources/soato'
@@ -12,6 +13,7 @@ const EXPECTED_COLUMNS = ['nameUz', 'nameRu', 'nameEn', 'soatoCode', 'nationalCo
 
 export function SoatoImportPage() {
   const { t } = useTranslation()
+  useDocumentTitle(t('soato.import.title'))
   const navigate = useNavigate()
   const toast = useToast()
   const qc = useQueryClient()

@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { useDocumentTitle } from '@/lib/hooks/useDocumentTitle'
 import { Pencil, Plus, Search, Trash2, Upload } from 'lucide-react'
 import { soatoApi } from '@/lib/api/resources/soato'
 import { criteria, type SearchCriteria } from '@/lib/api/pageable'
@@ -20,6 +21,7 @@ import { useSoatoMutations } from './useSoatoMutations'
 
 export function SoatoListPage() {
   const { t } = useTranslation()
+  useDocumentTitle(t('soato.title'))
   const navigate = useNavigate()
   const confirm = useConfirm()
   const toast = useToast()

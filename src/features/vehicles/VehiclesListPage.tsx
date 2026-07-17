@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { useDocumentTitle } from '@/lib/hooks/useDocumentTitle'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { BadgeCheck, BadgeX, Car, Check, Eye, Search, X } from 'lucide-react'
 import { vehiclesApi } from '@/lib/api/resources/vehicles'
@@ -24,6 +25,7 @@ import { toColorMap, toLabelMap, toOptions, useColors, useEnum } from '@/lib/enu
 
 export function VehiclesListPage() {
   const { t } = useTranslation()
+  useDocumentTitle(t('vehicles.title'))
   const navigate = useNavigate()
   const confirm = useConfirm()
   const toast = useToast()

@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { useDocumentTitle } from '@/lib/hooks/useDocumentTitle'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { BadgeCheck, BadgeX, Check, ChevronLeft, Film, Image as ImageIcon, Trash2, X } from 'lucide-react'
 import { vehiclesApi } from '@/lib/api/resources/vehicles'
@@ -30,6 +31,7 @@ function Spec({ label, children }: { label: string; children: React.ReactNode })
 
 export function VehicleDetailPage() {
   const { t, i18n } = useTranslation()
+  useDocumentTitle(t('vehicles.title'))
   const navigate = useNavigate()
   const confirm = useConfirm()
   const toast = useToast()

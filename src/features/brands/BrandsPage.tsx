@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useDocumentTitle } from '@/lib/hooks/useDocumentTitle'
 import { Pencil, Plus, Search, Trash2 } from 'lucide-react'
 import { brandsApi } from '@/lib/api/resources/brands'
 import { criteria } from '@/lib/api/pageable'
@@ -19,6 +20,7 @@ import { useBrandMutations } from './useBrandMutations'
 
 export function BrandsPage() {
   const { t, i18n } = useTranslation()
+  useDocumentTitle(t('brands.title'))
   const confirm = useConfirm()
   const toast = useToast()
   const { remove } = useBrandMutations()

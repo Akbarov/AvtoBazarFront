@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { useDocumentTitle } from '@/lib/hooks/useDocumentTitle'
 import { Eye, FileText, UserPlus, X } from 'lucide-react'
 import { inspectionsApi } from '@/lib/api/resources/inspections'
 import { criteria, type SearchCriteria } from '@/lib/api/pageable'
@@ -24,6 +25,7 @@ const SPECS = ['BODY', 'ENGINE', 'TRANSMISSION', 'ELECTRICAL', 'SUSPENSION', 'DI
 
 export function InspectionsPage() {
   const { t, i18n } = useTranslation()
+  useDocumentTitle(t('inspections.title'))
   const toast = useToast()
   const { reject } = useInspectionMutations()
 

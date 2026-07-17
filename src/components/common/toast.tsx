@@ -48,12 +48,13 @@ export function ToastProvider({ children }: { children: ReactNode }) {
   return (
     <ToastContext.Provider value={api}>
       {children}
-      <div className="pointer-events-none fixed right-5 top-5 z-[90] flex flex-col gap-2">
+      <div aria-live="polite" aria-atomic="true" className="pointer-events-none fixed right-5 top-5 z-[90] flex flex-col gap-2">
         {items.map((t) => {
           const Icon = ICONS[t.variant]
           return (
             <div
               key={t.id}
+              role={t.variant === 'danger' ? 'alert' : 'status'}
               className={cn(
                 'pointer-events-auto flex items-center gap-3 rounded-[11px] border border-l-[3px] border-border bg-surface px-4 py-3 shadow animate-ab-slidein',
                 ACCENTS[t.variant],

@@ -33,6 +33,7 @@ export function Pagination({ meta, page, perPage, onPage, onPerPage }: Paginatio
         <span>{t('grid.rows')}</span>
         <select
           value={perPage}
+          aria-label={t('grid.rows')}
           onChange={(e) => onPerPage(Number(e.target.value))}
           className="h-[30px] cursor-pointer rounded-[7px] border border-border-strong bg-surface px-1.5 text-[12.5px] text-fg outline-none"
         >
@@ -50,6 +51,7 @@ export function Pagination({ meta, page, perPage, onPage, onPerPage }: Paginatio
         <button
           onClick={() => onPage(page - 1)}
           disabled={page <= 1}
+          aria-label={t('grid.prevPage')}
           className="flex h-[30px] w-[30px] items-center justify-center rounded-[7px] border border-border-strong text-fg-2 disabled:opacity-40"
         >
           <ChevronLeft size={15} />
@@ -58,6 +60,7 @@ export function Pagination({ meta, page, perPage, onPage, onPerPage }: Paginatio
           <button
             key={n}
             onClick={() => onPage(n)}
+            aria-current={n === page ? 'page' : undefined}
             className={cn(
               'h-[30px] min-w-[30px] rounded-[7px] border px-2 font-mono text-[12.5px] font-semibold',
               n === page ? 'border-accent bg-accent text-accent-fg' : 'border-border-strong text-fg-2',
@@ -69,6 +72,7 @@ export function Pagination({ meta, page, perPage, onPage, onPerPage }: Paginatio
         <button
           onClick={() => onPage(page + 1)}
           disabled={page >= totalPages}
+          aria-label={t('grid.nextPage')}
           className="flex h-[30px] w-[30px] items-center justify-center rounded-[7px] border border-border-strong text-fg-2 disabled:opacity-40"
         >
           <ChevronRight size={15} />

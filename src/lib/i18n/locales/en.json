@@ -49,7 +49,9 @@
     "noResultsMsg": "Try adjusting or clearing the filters.",
     "errorTitle": "Failed to load data",
     "errorMsg": "Check your connection and try again.",
-    "retry": "Retry"
+    "retry": "Retry",
+    "prevPage": "Previous page",
+    "nextPage": "Next page"
   },
   "confirm": {
     "confirm": "Confirm",
